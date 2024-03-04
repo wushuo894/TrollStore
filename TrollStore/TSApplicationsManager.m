@@ -87,7 +87,7 @@ extern NSUserDefaults* trollStoreUserDefaults();
             errorDescription = @"启用开发者模式失败。";
             break;
         case 184:
-            errorDescription = @"应用程序安装成功, 但具有其他加密的二进制文件（例如扩展、插件）。应用程序本身应该可以工作, 但可能会导致功能损坏。";
+            errorDescription = @"应用程序安装成功, 但具有其他加密的二进制文件(例如扩展、插件)。应用程序本身应该可以工作, 但可能会导致功能损坏。";
             break;
     }
 

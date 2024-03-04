@@ -263,7 +263,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 	if([newState isEqualToString:@"User"])
 	{
 		NSString* title = [NSString stringWithFormat:@"已将 '%@' 切换为 \"System\" 注册状态", [appInfo displayName]];
-		UIAlertController* confirmationAlert = [UIAlertController alertControllerWithTitle:title message:@"将此应用程序切换为 \"User\" 注册状态后, 下次重新启动后将无法启动, 因为 TrollStore 中利用的漏洞仅影响注册为 \"System\" 的应用程序。\n此选项的目的是使应用程序暂时显示在设置中, 以便您可以调整设置, 然后将其切换回 \"System\" 注册状态（否则, TrollStore 安装的应用程序不会显示在设置中）。此外, \"User\" 注册状态还可以临时修复 iTunes 文件共享, 否则 TrollStore 安装的应用程序无法正常工作。\n当您完成所需的更改并希望应用程序能够再次启动时, 您需要在 TrollStore 中将其切换回 \"System\" 状态。" preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertController* confirmationAlert = [UIAlertController alertControllerWithTitle:title message:@"将此应用程序切换为 \"User\" 注册状态后, 下次重新启动后将无法启动, 因为 TrollStore 中利用的漏洞仅影响注册为 \"System\" 的应用程序。\n此选项的目的是使应用程序暂时显示在设置中, 以便您可以调整设置, 然后将其切换回 \"System\" 注册状态(否则, TrollStore 安装的应用程序不会显示在设置中)。此外, \"User\" 注册状态还可以临时修复 iTunes 文件共享, 否则 TrollStore 安装的应用程序无法正常工作。\n当您完成所需的更改并希望应用程序能够再次启动时, 您需要在 TrollStore 中将其切换回 \"System\" 状态。" preferredStyle:UIAlertControllerStyleAlert];
 
 		UIAlertAction* switchToUserAction = [UIAlertAction actionWithTitle:@"切换为 \"User\"" style:UIAlertActionStyleDestructive handler:^(UIAlertAction* action)
 		{
