@@ -16,7 +16,7 @@ jobs:
       - name: install
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install archive
+          brew install --cask archiver
       - name: Install Theos
         uses: Randomblock1/theos-action@v1.3
       - name: Make ChOma
