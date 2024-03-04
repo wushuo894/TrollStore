@@ -1,6 +1,6 @@
 TOPTARGETS := all clean update
 
-$(TOPTARGETS): pre_build make_fastPathSign make_roothelper make_trollstore make_trollhelper_embedded make_trollhelper_package assemble_trollstore
+$(TOPTARGETS): pre_build make_fastPathSign make_roothelper make_trollstore assemble_trollstore
 
 pre_build:
 	@rm -rf ./_build 2>/dev/null || true
@@ -75,4 +75,4 @@ build_installer64e:
 
 endif
 
-.PHONY: $(TOPTARGETS) pre_build assemble_trollstore make_trollhelper_package make_trollhelper_embedded
+.PHONY: $(TOPTARGETS) pre_build assemble_trollstore
