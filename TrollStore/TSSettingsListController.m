@@ -156,7 +156,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 			}
 
 			PSSpecifier* signingGroupSpecifier = [PSSpecifier emptyGroupSpecifier];
-			signingGroupSpecifier.name = @"Signing";
+			signingGroupSpecifier.name = @"签署";
 
 			if(ldidInstalled)
 			{
@@ -290,7 +290,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 		}
 
 		PSSpecifier* installationSettingsGroupSpecifier = [PSSpecifier emptyGroupSpecifier];
-		installationSettingsGroupSpecifier.name = @"Security";
+		installationSettingsGroupSpecifier.name = @"安全";
 		[installationSettingsGroupSpecifier setProperty:@"当启用 URL Scheme 时, 应用程序和网站可以通过 apple-magnifier://install?url=<IPA_URL> URL Scheme 触发TrollStore安装, 并通过 apple-magnifier://enable-jit?bundle-id=<BUNDLE_ID> URL Scheme 启用JIT。" forKey:@"footerText"];
 
 		[_specifiers addObject:installationSettingsGroupSpecifier];
