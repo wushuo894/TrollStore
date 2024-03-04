@@ -24,6 +24,9 @@ jobs:
       - name: Make TrollStore
         run: |
           make
+      - name: clear
+        run: |
+          rm -rf ./theos
       - name: tree
         run: |
           brew install tree
