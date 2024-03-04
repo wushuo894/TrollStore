@@ -30,7 +30,7 @@ jobs:
         with:
           name: ${{ env.version }}
           body: ${{ env.version }}
-          tag_name: release
+          tag_name: ${{ env.version }}
           append_body: false
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
