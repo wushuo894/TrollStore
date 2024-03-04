@@ -13,10 +13,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: install
+      - name: brew
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install --cask archiver
+          brew install libarchive
       - name: Install Theos
         uses: Randomblock1/theos-action@v1.3
       - name: Make ChOma
