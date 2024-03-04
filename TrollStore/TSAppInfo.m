@@ -1096,20 +1096,20 @@ extern UIImage* imageWithSize(UIImage* image, CGSize size);
 	if(allowedTccServices.count)
 	{
 		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n隐私" attributes:headerAttributes]];
-		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n该应用程序可以在未经许可的情况下访问以下服务：\n" attributes:bodyWarningAttributes]];
+		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n该应用程序可以在未经许可的情况下访问以下服务: \n" attributes:bodyWarningAttributes]];
 		[description appendAttributedString:[[NSAttributedString alloc] initWithString:[NSListFormatter localizedStringByJoiningStrings:[allowedTccServices allObjects]] attributes:bodyAttributes]];
 	}
 	
 	if (allowedMGKeys.count)
 	{
 		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n设备信息" attributes:headerAttributes]];
-		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n该应用程序可以访问有关该设备的受保护信息：\n" attributes:bodyWarningAttributes]];
+		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n该应用程序可以访问有关该设备的受保护信息: \n" attributes:bodyWarningAttributes]];
 		[description appendAttributedString:[[NSAttributedString alloc] initWithString:[NSListFormatter localizedStringByJoiningStrings:[allowedMGKeys allObjects]] attributes:bodyAttributes]];
 	}
     
 	if(unrestrictedContainerAccess || accessibleContainers.count)
 	{
-		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n可访问的容器：" attributes:headerAttributes]];
+		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n可访问的容器: " attributes:headerAttributes]];
 		if(unrestrictedContainerAccess)
 		{
 			[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n未受限制, 该应用程序可以访问系统上的所有数据容器。" attributes:bodyDangerAttributes]];
@@ -1125,7 +1125,7 @@ extern UIImage* imageWithSize(UIImage* image, CGSize size);
 
 	if(unrestrictedKeychainAccess || accessibleKeychainGroups.count)
 	{
-		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n可访问的钥匙串组：" attributes:headerAttributes]];
+		[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n可访问的钥匙串组: " attributes:headerAttributes]];
 		if(unrestrictedKeychainAccess)
 		{
 			[description appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n未受限制, 该应用程序可以访问整个钥匙串。" attributes:bodyDangerAttributes]];

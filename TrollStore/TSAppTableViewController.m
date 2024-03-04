@@ -217,7 +217,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		int ret = [appsManager enableJITForBundleID:appId];
 		if (ret != 0)
 		{
-			UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:@"错误" message:[NSString stringWithFormat:@"启用 JIT 错误：trollstorehelper 返回错误 %d", ret] preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:@"错误" message:[NSString stringWithFormat:@"启用 JIT 错误: trollstorehelper 返回错误 %d", ret] preferredStyle:UIAlertControllerStyleAlert];
 			UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
 			[errorAlert addAction:closeAction];
 			[TSPresentationDelegate presentViewController:errorAlert animated:YES completion:nil];
