@@ -476,7 +476,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		switchActionStyle = UIAlertActionStyleDefault;
 	}
 
-	UIAlertAction* switchRegistrationAction = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"切换到 "%@" 注册状态", switchState] style:switchActionStyle handler:^(UIAlertAction* action)
+	UIAlertAction* switchRegistrationAction = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"切换到 \"%@\" 注册状态", switchState] style:switchActionStyle handler:^(UIAlertAction* action)
 	{
 		[self changeAppRegistrationForRowAtIndexPath:indexPath toState:switchState];
 		[self deselectRow];
