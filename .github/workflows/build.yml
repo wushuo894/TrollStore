@@ -31,7 +31,7 @@ jobs:
           name: ${{ env.version }}
           body: ${{ env.version }}
           tag_name: release
-          append_body: true
+          append_body: false
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
             ./_build/TrollStore.tar
