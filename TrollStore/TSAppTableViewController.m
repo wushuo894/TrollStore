@@ -132,11 +132,11 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		});
 	}];
 
-	UIAction* installFromURLAction = [UIAction actionWithTitle:@"通过链接安装" image:[UIImage systemImageNamed:@"link.badge.plus"] identifier:@"InstallFromURL" handler:^(__kindof UIAction *action)
+	UIAction* installFromURLAction = [UIAction actionWithTitle:@"通过 URL 安装" image:[UIImage systemImageNamed:@"link.badge.plus"] identifier:@"InstallFromURL" handler:^(__kindof UIAction *action)
 	{
 		dispatch_async(dispatch_get_main_queue(), ^
 		{
-			UIAlertController* installURLController = [UIAlertController alertControllerWithTitle:@"安装地址" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertController* installURLController = [UIAlertController alertControllerWithTitle:@"通过 URL 安装" message:@"" preferredStyle:UIAlertControllerStyleAlert];
 
 			[installURLController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
 				textField.placeholder = @"URL";
