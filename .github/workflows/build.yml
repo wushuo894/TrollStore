@@ -28,8 +28,6 @@ jobs:
           make
       - name: Release
         uses: softprops/action-gh-release@v1
-        run: |
-          version=$(/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" TrollStore/Resources/Info.plist)
         with:
           name: ${{ version }}
           body: ${{ version }}
