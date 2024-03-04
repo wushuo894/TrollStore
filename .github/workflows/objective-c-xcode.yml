@@ -24,10 +24,8 @@ jobs:
       - name: Make TrollStore
         run: |
           make
-      - name: clear
-        run: |
-          rm -rf ./theos
-      - name: tree
-        run: |
-          brew install tree
-          tree ./
+      - name: Upload to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Artifacts
+          path: ./_build/*
