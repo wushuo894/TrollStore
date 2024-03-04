@@ -132,17 +132,17 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		});
 	}];
 
-	UIAction* installFromURLAction = [UIAction actionWithTitle:@"通过下载链接安装" image:[UIImage systemImageNamed:@"link.badge.plus"] identifier:@"InstallFromURL" handler:^(__kindof UIAction *action)
+	UIAction* installFromURLAction = [UIAction actionWithTitle:@"通过链接安装" image:[UIImage systemImageNamed:@"link.badge.plus"] identifier:@"InstallFromURL" handler:^(__kindof UIAction *action)
 	{
 		dispatch_async(dispatch_get_main_queue(), ^
 		{
-			UIAlertController* installURLController = [UIAlertController alertControllerWithTitle:@"Install from URL" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertController* installURLController = [UIAlertController alertControllerWithTitle:@"安装地址" message:@"" preferredStyle:UIAlertControllerStyleAlert];
 
 			[installURLController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
 				textField.placeholder = @"URL";
 			}];
 
-			UIAlertAction* installAction = [UIAlertAction actionWithTitle:@"Install" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
+			UIAlertAction* installAction = [UIAlertAction actionWithTitle:@"安装" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
 			{
 				NSString* URLString = installURLController.textFields.firstObject.text;
 				NSURL* remoteURL = [NSURL URLWithString:URLString];
@@ -151,7 +151,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 			}];
 			[installURLController addAction:installAction];
 
-			UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+			UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
 			[installURLController addAction:cancelAction];
 
 			[TSPresentationDelegate presentViewController:installURLController animated:YES completion:nil];
@@ -202,12 +202,12 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		NSString* failMessage = @"";
 		if([[appInfo registrationState] isEqualToString:@"User"])
 		{
-			failMessage = @"This app was not able to launch because it has a \"User\" registration state, register it as \"System\" and try again.";
+			failMessage = @"这个应用程序无法启动, 因为它具有\"User\"注册状态, 请将其注册为\"System\"后重试。";
 		}
 
-		NSString* failTitle = [NSString stringWithFormat:@"Failed to open %@", appId];
+		NSString* failTitle = [NSString stringWithFormat:@"打开失败 %@", appId];
 		UIAlertController* didFailController = [UIAlertController alertControllerWithTitle:failTitle message:failMessage preferredStyle:UIAlertControllerStyleAlert];
-		UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+		UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
 
 		[didFailController addAction:cancelAction];
 		[TSPresentationDelegate presentViewController:didFailController animated:YES completion:nil];
@@ -217,8 +217,8 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		int ret = [appsManager enableJITForBundleID:appId];
 		if (ret != 0)
 		{
-			UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:[NSString stringWithFormat:@"Error enabling JIT: trollstorehelper returned %d", ret] preferredStyle:UIAlertControllerStyleAlert];
-			UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil];
+			UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:@"错误" message:[NSString stringWithFormat:@"启用 JIT 错误：trollstorehelper 返回错误 %d", ret] preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
 			[errorAlert addAction:closeAction];
 			[TSPresentationDelegate presentViewController:errorAlert animated:YES completion:nil];
 		}
@@ -239,15 +239,15 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 				detailsAlert.attributedTitle = [appInfo detailedInfoTitle];
 				detailsAlert.attributedMessage = [appInfo detailedInfoDescription];
 
-				UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil];
+				UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
 				[detailsAlert addAction:closeAction];
 
 				[TSPresentationDelegate presentViewController:detailsAlert animated:YES completion:nil];
 			}
 			else
 			{
-				UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Parse Error %ld", error.code] message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-				UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil];
+				UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"解析错误 %ld", error.code] message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
 				[errorAlert addAction:closeAction];
 
 				[TSPresentationDelegate presentViewController:errorAlert animated:YES completion:nil];
@@ -262,10 +262,10 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 
 	if([newState isEqualToString:@"User"])
 	{
-		NSString* title = [NSString stringWithFormat:@"Switching '%@' to \"User\" Registration", [appInfo displayName]];
-		UIAlertController* confirmationAlert = [UIAlertController alertControllerWithTitle:title message:@"Switching this app to a \"User\" registration will make it unlaunchable after the next respring because the bugs exploited in TrollStore only affect apps registered as \"System\".\nThe purpose of this option is to make the app temporarily show up in settings, so you can adjust the settings and then switch it back to a \"System\" registration (TrollStore installed apps do not show up in settings otherwise). Additionally, the \"User\" registration state is also useful to temporarily fix iTunes file sharing, which also doesn't work for TrollStore installed apps otherwise.\nWhen you're done making the changes you need and want the app to become launchable again, you will need to switch it back to \"System\" state in TrollStore." preferredStyle:UIAlertControllerStyleAlert];
+		NSString* title = [NSString stringWithFormat:@"已将 '%@' 切换为 \"System\" 注册状态", [appInfo displayName]];
+		UIAlertController* confirmationAlert = [UIAlertController alertControllerWithTitle:title message:@"将此应用程序切换为 \"User\" 注册状态后, 下次重新启动后将无法启动, 因为 TrollStore 中利用的漏洞仅影响注册为 \"System\" 的应用程序。\n此选项的目的是使应用程序暂时显示在设置中, 以便您可以调整设置, 然后将其切换回 \"System\" 注册状态（否则, TrollStore 安装的应用程序不会显示在设置中）。此外, \"User\" 注册状态还可以临时修复 iTunes 文件共享, 否则 TrollStore 安装的应用程序无法正常工作。\n当您完成所需的更改并希望应用程序能够再次启动时, 您需要在 TrollStore 中将其切换回 \"System\" 状态。" preferredStyle:UIAlertControllerStyleAlert];
 
-		UIAlertAction* switchToUserAction = [UIAlertAction actionWithTitle:@"Switch to \"User\"" style:UIAlertActionStyleDestructive handler:^(UIAlertAction* action)
+		UIAlertAction* switchToUserAction = [UIAlertAction actionWithTitle:@"切换为 \"User\"" style:UIAlertActionStyleDestructive handler:^(UIAlertAction* action)
 		{
 			[[TSApplicationsManager sharedInstance] changeAppRegistration:[appInfo bundlePath] toState:newState];
 			[appInfo sync_loadBasicInfo];
@@ -273,7 +273,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 
 		[confirmationAlert addAction:switchToUserAction];
 
-		UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+		UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
 
 		[confirmationAlert addAction:cancelAction];
 
@@ -284,18 +284,18 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		[[TSApplicationsManager sharedInstance] changeAppRegistration:[appInfo bundlePath] toState:newState];
 		[appInfo sync_loadBasicInfo];
 
-		NSString* title = [NSString stringWithFormat:@"Switched '%@' to \"System\" Registration", [appInfo displayName]];
+		NSString* title = [NSString stringWithFormat:@"已将 '%@' 切换为 \"System\" 注册状态", [appInfo displayName]];
 
-		UIAlertController* infoAlert = [UIAlertController alertControllerWithTitle:title message:@"The app has been switched to the \"System\" registration state and will become launchable again after a respring." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertController* infoAlert = [UIAlertController alertControllerWithTitle:title message:@"该应用程序已切换到 \"System\" 注册状态, 在软重启后生效" preferredStyle:UIAlertControllerStyleAlert];
 
-		UIAlertAction* respringAction = [UIAlertAction actionWithTitle:@"Respring" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
+		UIAlertAction* respringAction = [UIAlertAction actionWithTitle:@"软重启" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
 		{
 			respring();
 		}];
 
 		[infoAlert addAction:respringAction];
 
-		UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil];
+		UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
 
 		[infoAlert addAction:closeAction];
 
@@ -313,9 +313,9 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 	NSString* appId = [appInfo bundleIdentifier];
 	NSString* appName = [appInfo displayName];
 
-	UIAlertController* confirmAlert = [UIAlertController alertControllerWithTitle:@"Confirm Uninstallation" message:[NSString stringWithFormat:@"Uninstalling the app '%@' will delete the app and all data associated to it.", appName] preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertController* confirmAlert = [UIAlertController alertControllerWithTitle:@"确认卸载操作" message:[NSString stringWithFormat:@"卸载应用程序 '%@' 将删除该应用程序及其关联的所有数据。", appName] preferredStyle:UIAlertControllerStyleAlert];
 
-	UIAlertAction* uninstallAction = [UIAlertAction actionWithTitle:@"Uninstall" style:UIAlertActionStyleDestructive handler:^(UIAlertAction* action)
+	UIAlertAction* uninstallAction = [UIAlertAction actionWithTitle:@"卸载" style:UIAlertActionStyleDestructive handler:^(UIAlertAction* action)
 	{
 		if(appId)
 		{
@@ -328,7 +328,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 	}];
 	[confirmAlert addAction:uninstallAction];
 
-	UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+	UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
 	[confirmAlert addAction:cancelAction];
 
 	[TSPresentationDelegate presentViewController:confirmAlert animated:YES completion:nil];
@@ -438,7 +438,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 
 	UIAlertController* appSelectAlert = [UIAlertController alertControllerWithTitle:appName?:@"" message:appId?:@"" preferredStyle:UIAlertControllerStyleActionSheet];
 
-	UIAlertAction* openAction = [UIAlertAction actionWithTitle:@"Open" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
+	UIAlertAction* openAction = [UIAlertAction actionWithTitle:@"打开" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
 	{
 		[self openAppPressedForRowAtIndexPath:indexPath enableJIT:NO];
 		[self deselectRow];
@@ -447,7 +447,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 
 	if ([appInfo isDebuggable])
 	{
-		UIAlertAction* openWithJITAction = [UIAlertAction actionWithTitle:@"Open with JIT" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
+		UIAlertAction* openWithJITAction = [UIAlertAction actionWithTitle:@"使用 JIT 打开" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
 		{
 			[self openAppPressedForRowAtIndexPath:indexPath enableJIT:YES];
 			[self deselectRow];
@@ -455,7 +455,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		[appSelectAlert addAction:openWithJITAction];
 	}
 
-	UIAlertAction* showDetailsAction = [UIAlertAction actionWithTitle:@"Show Details" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
+	UIAlertAction* showDetailsAction = [UIAlertAction actionWithTitle:@"显示详细信息" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
 	{
 		[self showDetailsPressedForRowAtIndexPath:indexPath];
 		[self deselectRow];
@@ -476,21 +476,21 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		switchActionStyle = UIAlertActionStyleDefault;
 	}
 
-	UIAlertAction* switchRegistrationAction = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"Switch to \"%@\" Registration", switchState] style:switchActionStyle handler:^(UIAlertAction* action)
+	UIAlertAction* switchRegistrationAction = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"切换到 "%@" 注册状态", switchState] style:switchActionStyle handler:^(UIAlertAction* action)
 	{
 		[self changeAppRegistrationForRowAtIndexPath:indexPath toState:switchState];
 		[self deselectRow];
 	}];
 	[appSelectAlert addAction:switchRegistrationAction];
 
-	UIAlertAction* uninstallAction = [UIAlertAction actionWithTitle:@"Uninstall App" style:UIAlertActionStyleDestructive handler:^(UIAlertAction* action)
+	UIAlertAction* uninstallAction = [UIAlertAction actionWithTitle:@"卸载应用程序" style:UIAlertActionStyleDestructive handler:^(UIAlertAction* action)
 	{
 		[self uninstallPressedForRowAtIndexPath:indexPath];
 		[self deselectRow];
 	}];
 	[appSelectAlert addAction:uninstallAction];
 
-	UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action)
+	UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action)
 	{
 		[self deselectRow];
 	}];

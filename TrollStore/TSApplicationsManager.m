@@ -21,73 +21,74 @@ extern NSUserDefaults* trollStoreUserDefaults();
 
 - (NSError*)errorForCode:(int)code
 {
-    NSString* errorDescription = @"Unknown Error";
+    NSString* errorDescription = @"未知错误";
     switch(code)
     {
-        // IPA install errors
+        // IPA 安装错误
         case 166:
-        errorDescription = @"The IPA file does not exist or is not accessible.";
-        break;
+            errorDescription = @"IPA 文件不存在或无法访问。";
+            break;
         case 167:
-        errorDescription = @"The IPA file does not appear to contain an app.";
-        break;
+            errorDescription = @"IPA 文件似乎不包含应用程序。";
+            break;
         case 168:
-        errorDescription = @"Failed to extract IPA file.";
-        break;
+            errorDescription = @"提取 IPA 文件失败。";
+            break;
         case 169:
-        errorDescription = @"Failed to extract update tar file.";
-        break;
-        // App install errors
+            errorDescription = @"提取更新 tar 文件失败。";
+            break;
+        // 应用程序安装错误
         case 170:
-        errorDescription = @"Failed to create container for app bundle.";
-        break;
+            errorDescription = @"无法为应用程序包创建容器。";
+            break;
         case 171:
-        errorDescription = @"A non-TrollStore app with the same identifier is already installed. If you are absolutely sure it is not, you can force install it.";
-        break;
+            errorDescription = @"已经安装了具有相同标识符的非 TrollStore 应用程序。如果您确信没有安装, 请尝试强制安装。";
+            break;
         case 172:
-        errorDescription = @"The app does not contain an Info.plist file.";
-        break;
+            errorDescription = @"应用程序不包含 Info.plist 文件。";
+            break;
         case 173:
-        errorDescription = @"The app is not signed with a fake CoreTrust certificate and ldid is not installed. Install ldid in the settings tab and try again.";
-        break;
+            errorDescription = @"应用程序未使用假 CoreTrust 证书进行签名, 且未安装 ldid。请在设置选项卡中安装 ldid 并重试。";
+            break;
         case 174:
-        errorDescription = @"The app's main executable does not exist.";
-        break;
+            errorDescription = @"应用程序的主执行文件不存在。";
+            break;
         case 175: {
             //if (@available(iOS 16, *)) {
             //    errorDescription = @"Failed to sign the app.";
             //}
             //else {
-                errorDescription = @"Failed to sign the app. ldid returned a non zero status code.";
+                errorDescription = @"应用程序签名失败。ldid 返回非 0 状态码。";
             //}
+            break;
         }
-        break;
         case 176:
-        errorDescription = @"The app's Info.plist is missing required values.";
-        break;
+            errorDescription = @"应用程序的 Info.plist 缺少必需的值。";
+            break;
         case 177:
-        errorDescription = @"Failed to mark app as TrollStore app.";
-        break;
+            errorDescription = @"将应用程序标记为 TrollStore 应用程序失败。";
+            break;
         case 178:
-        errorDescription = @"Failed to copy app bundle.";
-        break;
+            errorDescription = @"复制应用程序包失败。";
+            break;
         case 179:
-        errorDescription = @"The app you tried to install has the same identifier as a system app already installed on the device. The installation has been prevented to protect you from possible bootloops or other issues.";
-        break;
+            errorDescription = @"您尝试安装的应用程序与设备上已安装的系统应用程序具有相同的标识符。阻止安装以防止可能的启动循环或其他问题。";
+            break;
         case 180:
-        errorDescription = @"The app you tried to install has an encrypted main binary, which cannot have the CoreTrust bypass applied to it. Please ensure you install decrypted apps.";
-        break;
+            errorDescription = @"您尝试安装的应用程序具有加密的主要二进制文件, 无法应用 CoreTrust 绕过。请确保安装解密的应用程序。";
+            break;
         case 181:
-        errorDescription = @"Failed to add app to icon cache.";
-        break;
+            errorDescription = @"将应用程序添加到图标缓存失败。";
+            break;
         case 182:
-        errorDescription = @"The app was installed successfully, but requires developer mode to be enabled to run. After rebooting, select \"Turn On\" to enable developer mode.";
-        break;
+            errorDescription = @"应用程序安装成功, 但需要启用开发者模式才能运行。重启后, 选择 \"打开\" 以启用开发者模式。";
+            break;
         case 183:
-        errorDescription = @"Failed to enable developer mode.";
-        break;
+            errorDescription = @"启用开发者模式失败。";
+            break;
         case 184:
-        errorDescription = @"The app was installed successfully, but has additional binaries that are encrypted (e.g. extensions, plugins). The app itself should work, but you may experience broken functionality as a result.";
+            errorDescription = @"应用程序安装成功, 但具有其他加密的二进制文件（例如扩展、插件）。应用程序本身应该可以工作, 但可能会导致功能损坏。";
+            break;
     }
 
     NSError* error = [NSError errorWithDomain:TrollStoreErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey : errorDescription}];

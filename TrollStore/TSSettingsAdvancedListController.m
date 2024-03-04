@@ -16,10 +16,10 @@ extern NSUserDefaults* trollStoreUserDefaults();
 
 		PSSpecifier* installationMethodGroupSpecifier = [PSSpecifier emptyGroupSpecifier];
 		//installationMethodGroupSpecifier.name = @"Installation";
-		[installationMethodGroupSpecifier setProperty:@"installd:\nInstalls applications by doing a placeholder installation through installd, fixing the permissions and then adding it to icon cache.\nAdvantage: Might be slightly more persistent than the custom method in terms of icon cache reloads.\nDisadvantage: Causes some small issues with certain applications for seemingly no reason (E.g. Watusi cannot save preferences when being installed using this method).\n\nCustom (Recommended):\nInstalls applications by manually creating a bundle using MobileContainerManager, copying the app into it and adding it to icon cache.\nAdvantage: No known issues (As opposed to the Watusi issue outlined in the installd method).\nDisadvantage: Might be slightly less persistent then the installd method in terms of icon cache reloads.\n\nNOTE: In cases where installd is selected but the placeholder installation fails, TrollStore automatically falls back to using the Custom method." forKey:@"footerText"];
+		[installationMethodGroupSpecifier setProperty:@"installd：\n通过使用 installd 进行占位安装、修复权限, 然后将应用程序添加到图标缓存来安装应用程序。\n优点：在图标缓存重新加载方面可能比自定义方法稍微持久。\n缺点：对某些应用程序可能会出现一些小问题, 原因似乎无法解释（例如, 使用此方法安装 Watusi 时无法保存首选项）。\n\n自定义（推荐）：\n通过使用 MobileContainerManager 手动创建捆绑包, 将应用程序复制到其中并将其添加到图标缓存中来安装应用程序。\n优点：没有已知问题（与 installd 方法中概述的 Watusi 问题相对）。\n缺点：在图标缓存重新加载方面可能比 installd 方法稍微不持久。\n\n注意：如果选择了 installd 但占位安装失败, TrollStore 会自动回退到使用自定义方法。" forKey:@"footerText"]
 		[_specifiers addObject:installationMethodGroupSpecifier];
 
-		PSSpecifier* installationMethodSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Installation Method"
+		PSSpecifier* installationMethodSpecifier = [PSSpecifier preferenceSpecifierNamed:@"安装模式"
 											target:self
 											set:nil
 											get:nil
@@ -48,10 +48,10 @@ extern NSUserDefaults* trollStoreUserDefaults();
 
 		PSSpecifier* uninstallationMethodGroupSpecifier = [PSSpecifier emptyGroupSpecifier];
 		//uninstallationMethodGroupSpecifier.name = @"Uninstallation";
-		[uninstallationMethodGroupSpecifier setProperty:@"installd (Recommended):\nUninstalls applications using the same API that SpringBoard uses when uninstalling them from the home screen.\n\nCustom:\nUninstalls applications by removing them from icon cache and then deleting their application and data bundles directly.\n\nNOTE: In cases where installd is selected but the stock uninstallation fails, TrollStore automatically falls back to using the Custom method." forKey:@"footerText"];
+		[uninstallationMethodGroupSpecifier setProperty:@"installd (推荐): \n使用与 SpringBoard 在从主屏幕卸载应用程序时相同的 API 来卸载应用程序。\n\n自定义：\n通过从图标缓存中删除应用程序, 然后直接删除其应用程序和数据捆绑包来卸载应用程序。\n\n注意：如果选择了 installd, 但默认的卸载失败, TrollStore 会自动回退到使用自定义方法。" forKey:@"footerText"];
 		[_specifiers addObject:uninstallationMethodGroupSpecifier];
 
-		PSSpecifier* uninstallationMethodSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Uninstallation Method"
+		PSSpecifier* uninstallationMethodSpecifier = [PSSpecifier preferenceSpecifierNamed:@"卸载模式"
 											target:self
 											set:nil
 											get:nil

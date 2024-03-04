@@ -113,11 +113,11 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 		}
 
 		PSSpecifier* utilitiesGroupSpecifier = [PSSpecifier emptyGroupSpecifier];
-		utilitiesGroupSpecifier.name = @"Utilities";
-		[utilitiesGroupSpecifier setProperty:@"If an app does not immediately appear after installation, respring here and it should appear afterwards." forKey:@"footerText"];
+		utilitiesGroupSpecifier.name = @"实用工具";
+		[utilitiesGroupSpecifier setProperty:@"如果安装后应用程序没有立即出现, 请在此处进行软重启, 然后应用程序应该会随后出现。" forKey:@"footerText"];
 		[_specifiers addObject:utilitiesGroupSpecifier];
 
-		PSSpecifier* respringButtonSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Respring"
+		PSSpecifier* respringButtonSpecifier = [PSSpecifier preferenceSpecifierNamed:@"软重启"
 											target:self
 											set:nil
 											get:nil
@@ -130,7 +130,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 
 		[_specifiers addObject:respringButtonSpecifier];
 
-		PSSpecifier* rebuildIconCacheSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Rebuild Icon Cache"
+		PSSpecifier* rebuildIconCacheSpecifier = [PSSpecifier preferenceSpecifierNamed:@"重建图标缓存"
 											target:self
 											set:nil
 											get:nil
@@ -160,18 +160,18 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 
 			if(ldidInstalled)
 			{
-				[signingGroupSpecifier setProperty:@"ldid is installed and allows TrollStore to install unsigned IPA files." forKey:@"footerText"];
+				[signingGroupSpecifier setProperty:@"已安装 ldid, 允许 TrollStore 安装未签名的 IPA 文件。" forKey:@"footerText"];
 			}
 			else
 			{
-				[signingGroupSpecifier setProperty:@"In order for TrollStore to be able to install unsigned IPAs, ldid has to be installed using this button. It can't be directly included in TrollStore because of licensing issues." forKey:@"footerText"];
+				[signingGroupSpecifier setProperty:@"为了使 TrollStore 能够安装未签名的 IPA 文件, 必须使用此按钮安装 ldid。由于许可问题, ldid 无法直接包含在 TrollStore 中。" forKey:@"footerText"];
 			}
 
 			[_specifiers addObject:signingGroupSpecifier];
 
 			if(ldidInstalled)
 			{
-				NSString* installedTitle = @"ldid: Installed";
+				NSString* installedTitle = @"ldid: 已安装";
 				if(ldidVersion)
 				{
 					installedTitle = [NSString stringWithFormat:@"%@ (%@)", installedTitle, ldidVersion];
@@ -190,7 +190,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 
 				if(_newerLdidVersion && ![_newerLdidVersion isEqualToString:ldidVersion])
 				{
-					NSString* updateTitle = [NSString stringWithFormat:@"Update to %@", _newerLdidVersion];
+					NSString* updateTitle = [NSString stringWithFormat:@"更新至 %@", _newerLdidVersion];
 					PSSpecifier* ldidUpdateSpecifier = [PSSpecifier preferenceSpecifierNamed:updateTitle
 												target:self
 												set:nil
@@ -206,7 +206,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 			}
 			else
 			{
-				PSSpecifier* installLdidSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Install ldid"
+				PSSpecifier* installLdidSpecifier = [PSSpecifier preferenceSpecifierNamed:@"安装 ldid"
 												target:self
 												set:nil
 												get:nil
@@ -221,12 +221,12 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 		//}
 
 		PSSpecifier* persistenceGroupSpecifier = [PSSpecifier emptyGroupSpecifier];
-		persistenceGroupSpecifier.name = @"Persistence";
+		persistenceGroupSpecifier.name = @"持久化";
 		[_specifiers addObject:persistenceGroupSpecifier];
 
 		if([[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/TrollStorePersistenceHelper.app"])
 		{
-			[persistenceGroupSpecifier setProperty:@"When iOS rebuilds the icon cache, all TrollStore apps including TrollStore itself will be reverted to \"User\" state and either disappear or no longer launch. If that happens, you can use the TrollHelper app on the home screen to refresh the app registrations, which will make them work again." forKey:@"footerText"];
+			[persistenceGroupSpecifier setProperty:@"当iOS重建图标缓存时, 包括TrollStore本身在内的所有TrollStore应用程序都将恢复为\"User\"状态, 可能会消失或无法再启动。如果发生这种情况, 您可以使用主屏幕上的TrollHelper应用程序刷新应用程序的注册信息, 这将使它们再次正常工作。" forKey:@"footerText"];
 			PSSpecifier* installedPersistenceHelperSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Helper Installed as Standalone App"
 											target:self
 											set:nil
@@ -245,7 +245,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 			{
 				NSString* appName = [persistenceApp localizedName];
 
-				[persistenceGroupSpecifier setProperty:[NSString stringWithFormat:@"When iOS rebuilds the icon cache, all TrollStore apps including TrollStore itself will be reverted to \"User\" state and either disappear or no longer launch. If that happens, you can use the persistence helper installed into %@ to refresh the app registrations, which will make them work again.", appName] forKey:@"footerText"];
+				[persistenceGroupSpecifier setProperty:[NSString stringWithFormat:@"当iOS重建图标缓存时, 包括TrollStore本身在内的所有TrollStore应用程序都将恢复为\"User\"状态, 可能会消失或无法再启动。如果发生这种情况, 您可以使用安装在 %@ 中的 Persistence Helper 来刷新应用程序的注册信息, 从而使它们再次正常工作。", appName] forKey:@"footerText"];
 				PSSpecifier* installedPersistenceHelperSpecifier = [PSSpecifier preferenceSpecifierNamed:[NSString stringWithFormat:@"Helper Installed into %@", appName]
 												target:self
 												set:nil
@@ -257,7 +257,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 				installedPersistenceHelperSpecifier.identifier = @"persistenceHelperInstalled";
 				[_specifiers addObject:installedPersistenceHelperSpecifier];
 
-				PSSpecifier* uninstallPersistenceHelperSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Uninstall Persistence Helper"
+				PSSpecifier* uninstallPersistenceHelperSpecifier = [PSSpecifier preferenceSpecifierNamed:@"卸载 Persistence Helper"
 												target:self
 												set:nil
 												get:nil
@@ -273,9 +273,9 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 			}
 			else
 			{
-				[persistenceGroupSpecifier setProperty:@"When iOS rebuilds the icon cache, all TrollStore apps including TrollStore itself will be reverted to \"User\" state and either disappear or no longer launch. The only way to have persistence in a rootless environment is to replace a system application, here you can select a system app to replace with a persistence helper that can be used to refresh the registrations of all TrollStore related apps in case they disappear or no longer launch." forKey:@"footerText"];
+				[persistenceGroupSpecifier setProperty:@"当iOS重建图标缓存时, 包括TrollStore本身在内的所有TrollStore应用程序都将恢复为 \"User\" 状态, 可能会消失或无法再启动。在非越狱环境中获得持久化的唯一方法是替换系统应用程序。在这里, 您可以选择一个系统应用程序, 用 Persistence Helper 的替代应用程序来刷新所有 TrollStore 相关应用程序的注册信息, 以防它们消失或无法再启动。" forKey:@"footerText"];
 
-				_installPersistenceHelperSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Install Persistence Helper"
+				_installPersistenceHelperSpecifier = [PSSpecifier preferenceSpecifierNamed:@"安装 Persistence Helper"
 												target:self
 												set:nil
 												get:nil
@@ -291,11 +291,11 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 
 		PSSpecifier* installationSettingsGroupSpecifier = [PSSpecifier emptyGroupSpecifier];
 		installationSettingsGroupSpecifier.name = @"Security";
-		[installationSettingsGroupSpecifier setProperty:@"The URL Scheme, when enabled, will allow apps and websites to trigger TrollStore installations through the apple-magnifier://install?url=<IPA_URL> URL scheme and enable JIT through the apple-magnifier://enable-jit?bundle-id=<BUNDLE_ID> URL scheme." forKey:@"footerText"];
+		[installationSettingsGroupSpecifier setProperty:@"当启用 URL Scheme 时, 应用程序和网站可以通过 apple-magnifier://install?url=<IPA_URL> URL Scheme 触发TrollStore安装, 并通过 apple-magnifier://enable-jit?bundle-id=<BUNDLE_ID> URL Scheme 启用JIT。" forKey:@"footerText"];
 
 		[_specifiers addObject:installationSettingsGroupSpecifier];
 
-		PSSpecifier* URLSchemeToggle = [PSSpecifier preferenceSpecifierNamed:@"URL Scheme Enabled"
+		PSSpecifier* URLSchemeToggle = [PSSpecifier preferenceSpecifierNamed:@"URL Scheme 已启用"
 										target:self
 										set:@selector(setURLSchemeEnabled:forSpecifier:)
 										get:@selector(getURLSchemeEnabledForSpecifier:)
@@ -305,7 +305,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 
 		[_specifiers addObject:URLSchemeToggle];
 
-		PSSpecifier* installAlertConfigurationSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Show Install Confirmation Alert"
+		PSSpecifier* installAlertConfigurationSpecifier = [PSSpecifier preferenceSpecifierNamed:@"显示安装确认提示框"
 										target:self
 										set:@selector(setPreferenceValue:specifier:)
 										get:@selector(readPreferenceValue:)
@@ -326,7 +326,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 		[otherGroupSpecifier setProperty:[NSString stringWithFormat:@"TrollStore %@\n\n© 2022-2024 Lars Fröder (opa334)\n\nTrollStore is NOT for piracy!\n\nCredits:\nGoogle TAG, @alfiecg_dev: CoreTrust bug\n@lunotech11, @SerenaKit, @tylinux, @TheRealClarity, @dhinakg, @khanhduytran0: Various contributions\n@ProcursusTeam: uicache, ldid\n@cstar_ow: uicache\n@saurik: ldid", [self getTrollStoreVersion]] forKey:@"footerText"];
 		[_specifiers addObject:otherGroupSpecifier];
 
-		PSSpecifier* advancedLinkSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Advanced"
+		PSSpecifier* advancedLinkSpecifier = [PSSpecifier preferenceSpecifierNamed:@"高级选项"
 										target:self
 										set:nil
 										get:nil
@@ -337,7 +337,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 		[advancedLinkSpecifier setProperty:@YES forKey:@"enabled"];
 		[_specifiers addObject:advancedLinkSpecifier];
 
-		PSSpecifier* donateSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Donate"
+		PSSpecifier* donateSpecifier = [PSSpecifier preferenceSpecifierNamed:@"捐赠"
 										target:self
 										set:nil
 										get:nil
@@ -349,7 +349,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 		[_specifiers addObject:donateSpecifier];
 
 		// Uninstall TrollStore
-		PSSpecifier* uninstallTrollStoreSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Uninstall TrollStore"
+		PSSpecifier* uninstallTrollStoreSpecifier = [PSSpecifier preferenceSpecifierNamed:@"卸载 TrollStore"
 										target:self
 										set:nil
 										get:nil
@@ -375,7 +375,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 		[_specifiers addObject:doTheDashSpecifier];*/
 	}
 
-	[(UINavigationItem *)self.navigationItem setTitle:@"Settings"];
+	[(UINavigationItem *)self.navigationItem setTitle:@"设置"];
 	return _specifiers;
 }
 
@@ -405,16 +405,16 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 
 	if (ret == 0) {
 		UIAlertController* rebootNotification = [UIAlertController alertControllerWithTitle:@"Reboot Required"
-			message:@"After rebooting, select \"Turn On\" to enable developer mode."
+			message:@"重启后, 选择 \"Turn On\" 以启用开发者模式。"
 			preferredStyle:UIAlertControllerStyleAlert
 		];
-		UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action)
+		UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action)
 		{
 			[self reloadSpecifiers];
 		}];
 		[rebootNotification addAction:closeAction];
 
-		UIAlertAction* rebootAction = [UIAlertAction actionWithTitle:@"Reboot Now" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
+		UIAlertAction* rebootAction = [UIAlertAction actionWithTitle:@"重启" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
 		{
 			spawnRoot(rootHelperPath(), @[@"reboot"], nil, nil);
 		}];
@@ -422,8 +422,8 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 
 		[TSPresentationDelegate presentViewController:rebootNotification animated:YES completion:nil];
 	} else {
-		UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Error %d", ret] message:@"Failed to enable developer mode." preferredStyle:UIAlertControllerStyleAlert];
-		UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil];
+		UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"错误 %d", ret] message:@"无法启用开发者模式。" preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
 		[errorAlert addAction:closeAction];
 
 		[TSPresentationDelegate presentViewController:errorAlert animated:YES completion:nil];
@@ -448,7 +448,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 		}
 	}];
 
-	UIAlertController* selectAppAlert = [UIAlertController alertControllerWithTitle:@"Select App" message:@"Select a system app to install the TrollStore Persistence Helper into. The normal function of the app will not be available, so it is recommended to pick something useless like the Tips app." preferredStyle:UIAlertControllerStyleActionSheet];
+	UIAlertController* selectAppAlert = [UIAlertController alertControllerWithTitle:@"选择应用程序" message:@"选择一个系统应用, 将 TrollStore Persistence Helper 安装到其中。该应用的正常功能将不可用, 因此建议选择一些无用的应用程序, 比如 \"提示\" 应用。" preferredStyle:UIAlertControllerStyleActionSheet];
 	for(LSApplicationProxy* appProxy in appCandidates)
 	{
 		UIAlertAction* installAction = [UIAlertAction actionWithTitle:[appProxy localizedName] style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
@@ -483,14 +483,14 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 	NSString* newStateString = [newValue boolValue] ? @"enable" : @"disable";
 	spawnRoot(rootHelperPath(), @[@"url-scheme", newStateString], nil, nil);
 
-	UIAlertController* rebuildNoticeAlert = [UIAlertController alertControllerWithTitle:@"URL Scheme Changed" message:@"In order to properly apply the change of the URL scheme setting, rebuilding the icon cache is needed." preferredStyle:UIAlertControllerStyleAlert];
-	UIAlertAction* rebuildNowAction = [UIAlertAction actionWithTitle:@"Rebuild Now" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
+	UIAlertController* rebuildNoticeAlert = [UIAlertController alertControllerWithTitle:@"URL Scheme 已更改" message:@"为了正确应用 URL Scheme 设置的更改, 需要重建图标缓存。" preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction* rebuildNowAction = [UIAlertAction actionWithTitle:@"现在重建" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
 	{
 		[self rebuildIconCachePressed];
 	}];
 	[rebuildNoticeAlert addAction:rebuildNowAction];
 
-	UIAlertAction* rebuildLaterAction = [UIAlertAction actionWithTitle:@"Rebuild Later" style:UIAlertActionStyleCancel handler:nil];
+	UIAlertAction* rebuildLaterAction = [UIAlertAction actionWithTitle:@"稍后重建" style:UIAlertActionStyleCancel handler:nil];
 	[rebuildNoticeAlert addAction:rebuildLaterAction];
 
 	[TSPresentationDelegate presentViewController:rebuildNoticeAlert animated:YES completion:nil];
