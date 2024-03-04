@@ -15,8 +15,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Install libarchive
         run: |
-          version=$(defaults read ${{ github.workspace }}/TrollStore/Resources/Info.plist CFBundleVersion)
-          echo $version
+          export version=$(defaults read ${{ github.workspace }}/TrollStore/Resources/Info.plist CFBundleVersion)
           brew install libarchive
       - name: Install Theos
         uses: Randomblock1/theos-action@v1.3
@@ -29,8 +28,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ 'version' }}
-          body: ${{ 'version' }}
+          name: ${{ version }}
+          body: ${{ version }}
           tag_name: release
           append_body: true
           token: ${{ secrets.GITHUB_TOKEN }}
