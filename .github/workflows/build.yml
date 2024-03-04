@@ -25,7 +25,9 @@ jobs:
         run: |
           make
       - name: Release
-          uses: softprops/action-gh-release@v1
-          with:
-            files: |
-              ./_build/TrollStore.tar
+        uses: softprops/action-gh-release@v1
+        with:
+          append_body: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            ./_build/TrollStore.tar
