@@ -386,7 +386,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 
 - (NSArray*)installationConfirmationNames
 {
-	return @[@"Always (Recommended)", @"Only on Remote URL Installs", @"Never (Not Recommeded)"];
+	return @[@"始终 (推荐)", @"仅在远程URL安装时", @"从不 (不推荐)"];
 }
 
 - (void)respringButtonPressed

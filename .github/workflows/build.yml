@@ -1,4 +1,4 @@
-name: Xcode - Build and Analyze
+name: Build
 
 on:
   push:
@@ -8,24 +8,24 @@ on:
 
 jobs:
   build:
-    name: Build and analyse default scheme using xcodebuild command
+    name: Build
     runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: brew
+      - name: install libarchive
         run: |
           brew install libarchive
       - name: Install Theos
         uses: Randomblock1/theos-action@v1.3
-      - name: Make ChOma
+      - name: Clone ChOma
         run: |
           git clone https://github.com/opa334/ChOma.git
-      - name: Make TrollStore
+      - name: Make
         run: |
           make
       - name: Upload to Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Artifacts
-          path: ./_build/*
+          path: ./_build/*.tar
