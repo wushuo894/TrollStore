@@ -29,8 +29,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ version }}
-          body: ${{ version }}
+          name: version
+          body: version
           tag_name: release
           append_body: true
           token: ${{ secrets.GITHUB_TOKEN }}
