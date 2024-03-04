@@ -117,7 +117,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 
 - (void)_setUpNavigationBar
 {
-	UIAction* installFromFileAction = [UIAction actionWithTitle:@"Install IPA File" image:[UIImage systemImageNamed:@"doc.badge.plus"] identifier:@"InstallIPAFile" handler:^(__kindof UIAction *action)
+	UIAction* installFromFileAction = [UIAction actionWithTitle:@"安装 IPA 文件" image:[UIImage systemImageNamed:@"doc.badge.plus"] identifier:@"InstallIPAFile" handler:^(__kindof UIAction *action)
 	{
 		dispatch_async(dispatch_get_main_queue(), ^
 		{
@@ -132,7 +132,7 @@ UIImage* imageWithSize(UIImage* image, CGSize size)
 		});
 	}];
 
-	UIAction* installFromURLAction = [UIAction actionWithTitle:@"Install from URL" image:[UIImage systemImageNamed:@"link.badge.plus"] identifier:@"InstallFromURL" handler:^(__kindof UIAction *action)
+	UIAction* installFromURLAction = [UIAction actionWithTitle:@"通过下载链接安装" image:[UIImage systemImageNamed:@"link.badge.plus"] identifier:@"InstallFromURL" handler:^(__kindof UIAction *action)
 	{
 		dispatch_async(dispatch_get_main_queue(), ^
 		{
