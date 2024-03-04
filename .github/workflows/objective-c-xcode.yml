@@ -19,4 +19,4 @@ jobs:
           git clone https://github.com/opa334/ChOma.git
       - name: Make TrollStore
         run: |
-          make
+          make make_trollstore 
