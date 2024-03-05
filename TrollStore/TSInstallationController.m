@@ -13,7 +13,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 {
 	dispatch_async(dispatch_get_main_queue(), ^
 	{
-		[TSPresentationDelegate startActivity:@"Installing"];
+		[TSPresentationDelegate startActivity:@"正在安装"];
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
 		{
 			// Install IPA
@@ -204,7 +204,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 			});
 		}];
 
-		[TSPresentationDelegate startActivity:@"Downloading" withCancelHandler:^
+		[TSPresentationDelegate startActivity:@"正在下载" withCancelHandler:^
 		{
 			[downloadTask cancel];
 		}];
