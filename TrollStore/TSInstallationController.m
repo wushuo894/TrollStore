@@ -81,7 +81,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 					} else {
 						// unrecoverable error
 						UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"安装错误 %d", ret] message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-						UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil];
+						UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
 						[errorAlert addAction:closeAction];
 
 						UIAlertAction* copyLogAction = [UIAlertAction actionWithTitle:@"复制调试日志" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
@@ -141,7 +141,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 				}];
 				[installAlert addAction:installAction];
 
-				UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action)
+				UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action)
 				{
 					if(completionBlock) completionBlock(NO, nil);
 				}];
