@@ -37,8 +37,8 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 						if(completionBlock) completionBlock(YES, nil);
 					} else if (ret == 171) {
 						// recoverable error
-						UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Install Error %d", ret] message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-						UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
+						UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"安装错误 %d", ret] message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+						UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action)
 						{
 							if(completionBlock) completionBlock(NO, error);
 						}];
@@ -54,7 +54,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 					} else if (ret == 182) {
 						// non-fatal informative message
 						UIAlertController* rebootNotification = [UIAlertController alertControllerWithTitle:@"需要重启" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-						UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action)
+						UIAlertAction* closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action)
 						{
 							if(completionBlock) completionBlock(YES, nil);
 						}];
@@ -135,7 +135,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 				UIAlertController* installAlert = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
 				installAlert.attributedTitle = [appInfo detailedInfoTitle];
 				installAlert.attributedMessage = [appInfo detailedInfoDescription];
-				UIAlertAction* installAction = [UIAlertAction actionWithTitle:@"Install" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
+				UIAlertAction* installAction = [UIAlertAction actionWithTitle:@"安装" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
 				{
 					[self handleAppInstallFromFile:pathToIPA completion:completionBlock];
 				}];
