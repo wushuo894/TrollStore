@@ -404,7 +404,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 	int ret = spawnRoot(rootHelperPath(), @[@"arm-dev-mode"], nil, nil);
 
 	if (ret == 0) {
-		UIAlertController* rebootNotification = [UIAlertController alertControllerWithTitle:@"Reboot Required"
+		UIAlertController* rebootNotification = [UIAlertController alertControllerWithTitle:@"需要重启"
 			message:@"重启后, 选择 \"Turn On\" 以启用开发者模式。"
 			preferredStyle:UIAlertControllerStyleAlert
 		];
