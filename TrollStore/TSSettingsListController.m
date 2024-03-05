@@ -465,7 +465,7 @@ extern NSUserDefaults* trollStoreUserDefaults(void);
 	selectAppAlert.popoverPresentationController.sourceView = tableView;
 	selectAppAlert.popoverPresentationController.sourceRect = [tableView rectForRowAtIndexPath:indexPath];
 
-	UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+	UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
 	[selectAppAlert addAction:cancelAction];
 
 	[TSPresentationDelegate presentViewController:selectAppAlert animated:YES completion:nil];
